@@ -33,25 +33,10 @@ function getCurrentFunctionName() {
  *
  */
 function getFunctionBody(func) {
-  const funcString = func.toString();
-  const bodyRegex = /{([\s\S]*)}/;
-  const match = funcString.match(bodyRegex);
-  if (match) {
-    return match[1].trim();
+  if (func) {
+    return func.toString();
   }
-  const functionIndex = funcString.indexOf('function');
-  const bodyStartIndex = funcString.indexOf('{', functionIndex);
-  let bracketCount = 1;
-  let i = bodyStartIndex + 1;
-  while (i < funcString.length && bracketCount > 0) {
-    if (funcString[i] === '{') {
-      bracketCount += 1;
-    } else if (funcString[i] === '}') {
-      bracketCount -= 1;
-    }
-    i += 1;
-  }
-  return funcString.slice(bodyStartIndex, i).trim();
+  return '';
 }
 
 /**
